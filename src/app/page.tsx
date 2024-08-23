@@ -2,10 +2,21 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Joyride, { Step } from "react-joyride";
 
 export default function Home() {
+  const [run, setRun] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  if (!loaded) {
+    return;
+  }
+
   const steps: Step[] = [
     {
       target: ".my-first-step",
@@ -22,8 +33,6 @@ export default function Home() {
       placementBeacon: "top",
     },
   ];
-
-  const [run, setRun] = useState(false);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
