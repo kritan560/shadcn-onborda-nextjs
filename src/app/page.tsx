@@ -1,15 +1,15 @@
-"use client";
-
 import { ModeToggle } from "@/components/mode-toggle";
-import Onboarding from "@/onboarding";
+import OnboardingStartButton from "@/onboarding/onboarding-start-button";
+import OnboardingTargetComponetRendered from "@/onboarding/onboarding-target-componet-rendered";
 import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
+      <OnboardingTargetComponetRendered />
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="flex gap-x-4 items-center">
-          <Onboarding />
+          <OnboardingStartButton />
 
           <div className="step3">
             <ModeToggle />
