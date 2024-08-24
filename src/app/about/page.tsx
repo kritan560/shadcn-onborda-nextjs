@@ -1,4 +1,6 @@
 import OnboardingTargetComponetRendered from "@/onboarding/onboarding-target-componet-rendered";
+import { HOMEPAGE_ROUTE } from "@/routes/routes";
+import Link from "next/link";
 import { lazy, Suspense } from "react";
 
 // artificial delayed component
@@ -23,6 +25,7 @@ const AboutPage = async () => {
       <Suspense fallback={<>Loading...</>}>{<DelayedComponent />}</Suspense>
       <br />
       <br />
+      <Link href={HOMEPAGE_ROUTE}>Homepage</Link>
     </div>
   );
 };
