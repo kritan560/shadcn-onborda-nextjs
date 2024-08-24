@@ -1,57 +1,16 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode-toggle";
-import { Button } from "@/components/ui/button";
+import Onboarding from "@/onboarding";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import Joyride, { Step } from "react-joyride";
 
 export default function Home() {
-  const [run, setRun] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
-
-  if (!loaded) {
-    return;
-  }
-
-  const steps: Step[] = [
-    {
-      target: ".my-first-step",
-      content: "This is my awesome feature!",
-      placement: "top-end",
-      // directly shows the onboarding
-      disableBeacon: true,
-    },
-    {
-      target: ".my-other-step",
-      content: "This another awesome feature!",
-      event: "hover",
-      // here do not show the onboard directly instead show the beacon
-      placementBeacon: "top",
-    },
-    {
-      target: ".step3",
-      content: "This is light/dark mode toggle",
-      event: "hover",
-      placementBeacon: "top",
-    },
-  ];
-
   return (
     <div>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div className="flex gap-x-4 items-center">
-          <Button
-            onClick={() => {
-              setRun(!run);
-            }}
-          >
-            Onboarding
-          </Button>
+          <Onboarding />
+
           <div className="step3">
             <ModeToggle />
           </div>
@@ -165,34 +124,6 @@ export default function Home() {
           </a>
         </div>
       </main>
-      <Joyride
-        steps={steps}
-        run={run}
-        continuous
-        disableCloseOnEsc={true}
-        scrollToFirstStep={true}
-        styles={{
-          options: {
-            // pointer color
-            arrowColor: "rgb(14 165 233)",
-            // background color of popup
-            backgroundColor: "rgb(14 165 233)",
-            // overlay color with alpha value
-            overlayColor: "rgb(39 39 42 / 0.9)",
-            // color of a button
-            primaryColor: "rgb(244 63 94 / 0.6)",
-            // text color of a button
-            textColor: "#004a14",
-            beaconSize: 60,
-          },
-        }}
-        callback={(e) => {
-          // if the aaction is completed set the state to false
-          if (e.action === "reset") {
-            setRun(false);
-          }
-        }}
-      />
     </div>
   );
 }
